@@ -37,8 +37,16 @@ const contactForm = document.querySelector("#contact-form");
 
 if (contactForm instanceof HTMLFormElement) {
   const status = document.querySelector("#contact-status");
+  const successDialog = document.querySelector("#contact-success");
+  const successMessage = document.querySelector("#contact-success-message");
+  const closeDialogButtons = successDialog?.querySelectorAll(".success-dialog-close, .success-dialog-button");
   const submitButton = contactForm.querySelector('button[type="submit"]');
   const topicSelect = document.querySelector("#contact-topic");
+  closeDialogButtons?.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (successDialog instanceof HTMLDialogElement) successDialog.close();
+    });
+  });
   const requestedInterest = new URLSearchParams(window.location.search).get("interest");
   if (topicSelect instanceof HTMLSelectElement && requestedInterest) {
     const normalizedInterest = requestedInterest.toLowerCase();
@@ -121,9 +129,15 @@ if (contactForm instanceof HTMLFormElement) {
         return;
       }
 
-      status.textContent = result.confirmation === false
+      const confirmationMessage = result.confirmation === false
         ? `Thanks, ${firstName.trim()}. We received your request. Our team will get in touch at ${submittedEmail}; an automated confirmation could not be sent.`
         : `Thanks, ${firstName.trim()}. Our team will get in touch shortly at ${submittedEmail}. A confirmation email is on its way.`;
+      if (successDialog instanceof HTMLDialogElement && successMessage instanceof HTMLElement) {
+        successMessage.textContent = confirmationMessage;
+        successDialog.showModal();
+      } else {
+        status.textContent = confirmationMessage;
+      }
       contactForm.reset();
       if (topicSelect instanceof HTMLSelectElement && requestedInterest) {
         const normalizedInterest = requestedInterest.toLowerCase();
