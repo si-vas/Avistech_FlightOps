@@ -380,7 +380,8 @@ body.page-leaving { opacity: 0; transform: translateY(-5px); transition: opacity
 .contact-form-heading h2 { margin: 4px 0 0; font-size: 19px; letter-spacing: -.045em; }.required-note { color: #87928a; font-size: 8px; }
 .contact-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 11px; }
 .contact-fields label { display: grid; align-content: start; gap: 6px; color: #40534a; font-size: 9px; font-weight: 700; }
-.contact-fields label > span { display: inline; color: #a55d3d; }
+.contact-fields .field-label { display: block; }
+.contact-fields .required-marker { color: #a55d3d; }
 .contact-fields input, .contact-fields select, .contact-fields textarea { width: 100%; min-height: 41px; padding: 10px 11px; border: 1px solid #dce4dd; border-radius: 7px; outline: none; color: var(--ink); background: #fff; font-size: 10px; font-weight: 450; }
 .contact-fields textarea { min-height: 180px; resize: vertical; line-height: 1.6; }
 .contact-fields input:focus, .contact-fields select:focus, .contact-fields textarea:focus { border-color: #70966b; box-shadow: 0 0 0 3px rgba(112,150,107,.13); }
