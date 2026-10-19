@@ -25,32 +25,12 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
 });
 
 const countrySelect = document.querySelector("#country-code");
-const phoneInput = document.querySelector("#contact-phone");
-const phonePrefix = document.querySelector("#phone-prefix");
 
 function getCountrySelection() {
   if (!(countrySelect instanceof HTMLSelectElement)) return null;
   const [country, dialCode = ""] = countrySelect.value.split("|");
   const selectedOption = countrySelect.selectedOptions[0];
   return { country, dialCode, name: selectedOption?.textContent?.trim() || country };
-}
-
-function updatePhoneHint() {
-  if (!(phonePrefix instanceof HTMLElement)) return;
-  const selection = getCountrySelection();
-  if (!selection) return;
-  phonePrefix.textContent = selection.dialCode
-    ? `Country prefix ${selection.dialCode} will be added automatically.`
-    : "Enter the full international number, including + and country code.";
-  if (phoneInput instanceof HTMLInputElement) {
-    phoneInput.placeholder = selection.dialCode ? "Enter number without country code" : "+ country code and number";
-    phoneInput.autocomplete = selection.dialCode ? "tel-national" : "tel";
-  }
-}
-
-if (countrySelect instanceof HTMLSelectElement) {
-  countrySelect.addEventListener("change", updatePhoneHint);
-  updatePhoneHint();
 }
 
 const contactForm = document.querySelector("#contact-form");
@@ -151,7 +131,6 @@ if (contactForm instanceof HTMLFormElement) {
         );
         if (matchingOption) topicSelect.value = matchingOption.value;
       }
-      updatePhoneHint();
     } catch (error) {
       console.error("Unable to submit contact enquiry:", error);
       status.textContent = "We couldn't reach the contact service. Please try again shortly.";
