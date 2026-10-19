@@ -17,7 +17,7 @@ Responsive corporate/product website for Avistech's FlightOps product, which is 
 
 ## Deploy to Vercel
 
-Set the Vercel project root to this directory. Static pages are served directly and `api/contact.js` handles contact form submissions.
+Set the Vercel project root to this directory. Static pages are served directly and `api/signup.js` handles contact form submissions.
 
 Configure these environment variables in **Vercel → Project → Settings → Environment Variables**:
 
@@ -25,7 +25,7 @@ Configure these environment variables in **Vercel → Project → Settings → E
 | --- | --- | --- |
 | `SITE_URL` | `https://avistech.space` | Canonical website origin used to validate contact requests. |
 | `RESEND_API_KEY` | `re_...` | Private server-side API key from Resend. Never expose it in browser code. |
-| `EMAIL_FROM` | `Avistech <no-reply@avistech.space>` | Sender identity on the verified sending domain. |
+| `EMAIL_FROM` | `Avistech Support <support@avistech.space>` | Sender identity on the verified sending domain. |
 | `NOTIFICATION_EMAIL` | `contactus@avistech.space` | Avistech inbox that receives contact enquiries. |
 
 ### Verify email delivery
