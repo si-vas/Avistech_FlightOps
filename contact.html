@@ -22,17 +22,16 @@
           <p class="eyebrow eyebrow-light">Get in touch</p><h2>Start with your workflow.</h2>
           <p>Talk to us about FlightOps, planned pricing, your drone fleet, or the work your team wants to organize.</p>
           <div class="contact-detail"><span aria-hidden="true">✉</span><div><small>Email</small><a href="mailto:contactus@avistech.space">contactus@avistech.space</a></div></div>
-          <div class="contact-detail"><span aria-hidden="true">◷</span><div><small>Product status</small><b>FlightOps is in development</b></div></div>
           <div class="contact-aside-note">Please do not include sensitive flight, pilot, safety, or maintenance records in this form.</div>
         </aside>
         <form class="contact-form" id="contact-form">
           <div class="contact-form-heading"><div><p class="micro-label">AVISTECH ENQUIRY</p><h2>Fill in the form</h2></div><span class="required-note">* Required</span></div>
           <div class="contact-fields">
-            <label>First name <span>*</span><input name="firstName" type="text" autocomplete="given-name" maxlength="80" required></label>
-            <label>Last name <span>*</span><input name="lastName" type="text" autocomplete="family-name" maxlength="80" required></label>
-            <label class="contact-company">Company <span>*</span><input name="company" type="text" autocomplete="organization" maxlength="120" required></label>
-            <label class="contact-email">Email address <span>*</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
-            <label>Country / calling code <span>*</span>
+            <label><span class="field-label">First name <span class="required-marker">*</span></span><input name="firstName" type="text" autocomplete="given-name" maxlength="80" required></label>
+            <label><span class="field-label">Last name <span class="required-marker">*</span></span><input name="lastName" type="text" autocomplete="family-name" maxlength="80" required></label>
+            <label class="contact-company"><span class="field-label">Company <span class="required-marker">*</span></span><input name="company" type="text" autocomplete="organization" maxlength="120" required></label>
+            <label class="contact-email"><span class="field-label">Email address <span class="required-marker">*</span></span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
+            <label><span class="field-label">Country / calling code <span class="required-marker">*</span></span>
               <select name="country" id="country-code" autocomplete="country" required>
                 <option value="US|+1" data-iso="US">United States (+1)</option>
                 <option value="CA|+1" data-iso="CA">Canada (+1)</option>
@@ -86,9 +85,9 @@
                 <option value="OTHER|">Other / not listed</option>
               </select>
             </label>
-            <label>Phone number <span>*</span><input name="phone" id="contact-phone" type="tel" autocomplete="tel-national" inputmode="tel" minlength="5" maxlength="24" placeholder="Phone number" required></label>
-            <label class="contact-message">Details <span>*</span><textarea name="details" rows="7" maxlength="3000" placeholder="Tell us about your team, fleet, and what you would like to discuss." required></textarea></label>
-            <label class="contact-topic">What can we help with? <span>*</span>
+            <label><span class="field-label">Phone number <span class="required-marker">*</span></span><input name="phone" id="contact-phone" type="tel" autocomplete="tel-national" inputmode="tel" minlength="5" maxlength="24" placeholder="Phone number" required></label>
+            <label class="contact-message"><span class="field-label">Details <span class="required-marker">*</span></span><textarea name="details" rows="7" maxlength="3000" placeholder="Tell us about your team, fleet, and what you would like to discuss." required></textarea></label>
+            <label class="contact-topic"><span class="field-label">What can we help with? <span class="required-marker">*</span></span>
               <select name="topic" id="contact-topic" required>
                 <option value="">Select a topic</option>
                 <option>Product information</option>
