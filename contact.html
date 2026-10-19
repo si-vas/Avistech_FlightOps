@@ -26,12 +26,12 @@
           <div class="contact-aside-note">Please do not include sensitive flight, pilot, safety, or maintenance records in this form.</div>
         </aside>
         <form class="contact-form" id="contact-form">
-          <div class="contact-form-heading"><div><p class="micro-label">AVISTECH ENQUIRY</p><h2>Send us a message</h2></div><span class="required-note">* Required</span></div>
+          <div class="contact-form-heading"><div><p class="micro-label">AVISTECH ENQUIRY</p><h2>Fill in the form</h2></div><span class="required-note">* Required</span></div>
           <div class="contact-fields">
             <label>First name <span>*</span><input name="firstName" type="text" autocomplete="given-name" maxlength="80" required></label>
             <label>Last name <span>*</span><input name="lastName" type="text" autocomplete="family-name" maxlength="80" required></label>
-            <label>Work email <span>*</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
-            <label>Company <span>*</span><input name="company" type="text" autocomplete="organization" maxlength="120" required></label>
+            <label class="contact-company">Company <span>*</span><input name="company" type="text" autocomplete="organization" maxlength="120" required></label>
+            <label class="contact-email">Email address <span>*</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
             <label>Country / calling code <span>*</span>
               <select name="country" id="country-code" autocomplete="country" required>
                 <option value="US|+1" data-iso="US">United States (+1)</option>
@@ -86,7 +86,8 @@
                 <option value="OTHER|">Other / not listed</option>
               </select>
             </label>
-            <label>Phone number <span>*</span><input name="phone" id="contact-phone" type="tel" autocomplete="tel-national" inputmode="tel" minlength="5" maxlength="24" placeholder="Enter number without country code" required><small class="field-hint" id="phone-prefix">Country prefix +91 will be included.</small></label>
+            <label>Phone number <span>*</span><input name="phone" id="contact-phone" type="tel" autocomplete="tel-national" inputmode="tel" minlength="5" maxlength="24" placeholder="Phone number" required></label>
+            <label class="contact-message">Details <span>*</span><textarea name="details" rows="7" maxlength="3000" placeholder="Tell us about your team, fleet, and what you would like to discuss." required></textarea></label>
             <label class="contact-topic">What can we help with? <span>*</span>
               <select name="topic" id="contact-topic" required>
                 <option value="">Select a topic</option>
@@ -101,7 +102,6 @@
                 <option>Other</option>
               </select>
             </label>
-            <label class="contact-message">Details <span>*</span><textarea name="details" rows="5" maxlength="3000" placeholder="Tell us about your team, fleet, and what you would like to discuss." required></textarea></label>
           </div>
           <label class="contact-consent"><input name="consent" type="checkbox" required><span>I agree that Avistech may use these details to respond to my enquiry. See the <a href="privacy.html">privacy notice</a>.</span></label>
           <label class="honeypot" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label>
