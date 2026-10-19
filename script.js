@@ -80,6 +80,7 @@ if (contactForm instanceof HTMLFormElement) {
       return;
     }
 
+    const submittedEmail = email.trim();
     const phoneDigits = phone.replace(/\D/g, "");
     const phoneE164 = selection.dialCode
       ? `${selection.dialCode}${phoneDigits.replace(/^0+/, "")}`
@@ -93,14 +94,14 @@ if (contactForm instanceof HTMLFormElement) {
     submitButton.disabled = true;
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "contact",
           firstName: firstName.trim(),
           lastName: lastName.trim(),
-          email: email.trim(),
+          email: submittedEmail,
           company: company.trim(),
           country: selection.name,
           countryCode: selection.dialCode,
@@ -116,13 +117,13 @@ if (contactForm instanceof HTMLFormElement) {
       if (!response.ok) {
         status.textContent = typeof result.error === "string"
           ? result.error
-          : "We couldn't submit your request. Please try again.";
+          : "We couldn't confirm your request was submitted. Please try again or email contactus@avistech.space.";
         return;
       }
 
       status.textContent = result.confirmation === false
-        ? "Thanks. Your enquiry reached Avistech, but the confirmation email could not be sent."
-        : "Thanks. Your enquiry was sent, and a confirmation is on its way.";
+        ? `Thanks, ${firstName.trim()}. We received your request. Our team will get in touch at ${submittedEmail}; an automated confirmation could not be sent.`
+        : `Thanks, ${firstName.trim()}. Our team will get in touch shortly at ${submittedEmail}. A confirmation email is on its way.`;
       contactForm.reset();
       if (topicSelect instanceof HTMLSelectElement && requestedInterest) {
         const normalizedInterest = requestedInterest.toLowerCase();
