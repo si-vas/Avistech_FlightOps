@@ -1,43 +1,50 @@
 # Avistech FlightOps
 
-Responsive early-access website for FlightOps, a drone flight logging and maintenance product in development.
+Responsive corporate/product website for Avistech's FlightOps product, which is in development for commercial drone operators and flight schools.
 
 ## Pages
 
-- `index.html`: company/product information and early-access signup.
-- `workspace.html`: visual workspace preview containing fictional sample records.
-- `pricing.html`: planned $29, $79, and $249 monthly tiers. The service is not yet available for purchase.
-- `privacy.html`: current early-access data-handling notice.
-- `terms.html`: availability and aviation-safety information.
+- `index.html`: company and product overview.
+- `products.html`: product capability carousel with 3D motion.
+- `solutions.html`: commercial operator, flight school, and fleet-maintenance use cases.
+- `why-avistech.html`: product principles.
+- `about.html`: who Avistech is and current product status.
+- `pricing.html`: planned $29, $79, and $249 monthly tiers; subscriptions are not available yet.
+- `workspace.html`: visual workspace layout with explicitly fictional sample records.
+- `faq.html`: product, pricing, availability, and data-handling answers.
+- `contact.html`: contact form with name, company, email, calling-code selector, phone number, enquiry topic, and details.
+- `privacy.html` and `terms.html`: current website and availability notices.
 
 ## Deploy to Vercel
 
-Create a Vercel project with this directory as its project root. The static HTML pages are served directly, and `api/signup.js` runs as a Vercel Function. The signup endpoint requires the environment variables below; without them, the form intentionally reports that signup is unavailable.
+Set the Vercel project root to this directory. Static pages are served directly and `api/contact.js` handles contact form submissions.
 
-Set these variables in **Vercel → Project → Settings → Environment Variables** for the environments where signup should work:
+Configure these environment variables in **Vercel → Project → Settings → Environment Variables**:
 
 | Variable | Example | Purpose |
 | --- | --- | --- |
-| `SITE_URL` | `https://avistech.space` | Exact canonical origin used to validate browser signup requests. |
-| `RESEND_API_KEY` | `re_...` | Secret API key from Resend. Keep it server-side; never add it to HTML or browser JavaScript. |
-| `EMAIL_FROM` | `Avistech <no-reply@avistech.space>` | Verified sender identity used for confirmation messages. |
-| `NOTIFICATION_EMAIL` | `contactus@avistech.space` | Inbox receiving a blind copy of each signup confirmation. |
+| `SITE_URL` | `https://avistech.space` | Canonical website origin used to validate contact requests. |
+| `RESEND_API_KEY` | `re_...` | Private server-side API key from Resend. Never expose it in browser code. |
+| `EMAIL_FROM` | `Avistech <no-reply@avistech.space>` | Sender identity on the verified sending domain. |
+| `NOTIFICATION_EMAIL` | `contactus@avistech.space` | Avistech inbox that receives contact enquiries. |
 
-### Verify the sender domain
+### Verify email delivery
 
-1. Create a Resend account and add `avistech.space` (or a dedicated sending subdomain) in its Domains dashboard.
-2. Publish the exact DNS records Resend provides, then wait until the domain is verified.
-3. Preserve existing Zoho MX records so `contactus@avistech.space` keeps receiving mail. If DNS requires an SPF update, merge the provider's include into the existing SPF record; do not publish multiple SPF records for one hostname.
-4. Use the verified domain in `EMAIL_FROM`. `no-reply@avistech.space` does not need to be a mailbox for sending, but replies are directed to `NOTIFICATION_EMAIL`.
-5. Add a DMARC policy for the domain and confirm sender alignment/inbox delivery before announcing the signup form.
-6. Add the environment variables in Vercel and redeploy. Submit a real test signup and verify both the registrant confirmation and the notification at `contactus@avistech.space`.
+1. Add `avistech.space` or a dedicated sending subdomain to Resend and publish the DNS records Resend supplies.
+2. Keep existing Zoho MX records. Merge SPF authorization if needed; do not create multiple SPF records for the same host.
+3. Verify the sending domain and use `Avistech <no-reply@avistech.space>` for `EMAIL_FROM`. A no-reply sender does not need to be an inbox; contact replies go to the visitor and Avistech receives the enquiry separately.
+4. Add the environment variables in Vercel and redeploy.
+5. Test the form with a real submission. Confirm the enquiry reaches `contactus@avistech.space` and the acknowledgement reaches the address entered in the form.
+6. Review SPF/DKIM alignment and configure a DMARC policy for the domain.
 
-The signup sends the registrant one confirmation email and BCCs the notification inbox. No application database is connected; the notification is the current manual record of the request. The function includes a honeypot and a basic per-instance in-memory request limit. For a public launch, add durable rate limiting or bot protection and decide how requests will be retained and removed.
+The contact API sends one enquiry email to Avistech and a separate acknowledgement to the visitor. It does not save form submissions in an application database. Treat the received notification email as the current enquiry record. The API includes a honeypot and basic in-memory rate limiting; add a durable rate-limit/bot-protection service and decide retention/deletion procedures before high-volume use.
 
-## Local preview
+The selected calling code is applied in the browser to produce the submitted international phone number. The API validates the resulting E.164-style number format.
 
-Static pages can be previewed with any static web server. For the serverless signup endpoint, deploy a Vercel preview with the environment variables configured or use the Vercel CLI's local function emulation.
+## Motion and accessibility
 
-## Accuracy before publishing
+Product cards use CSS perspective and a small pointer-based tilt; the product page has clickable feature slides and background transitions. Scroll/page transitions honor `prefers-reduced-motion`.
 
-FlightOps is still in development. Keep the early-access status, sample-data labels, planned-pricing wording, and availability/safety disclosures until the corresponding product features and billing are genuinely operational. Review the privacy notice against your final hosting and email-provider configuration.
+## Product accuracy
+
+FlightOps is still in development. Workspace visuals use fictional sample information; plans and prices are not yet purchasable. Keep these availability statements until the service is actually operational. A website does not establish AWS Activate eligibility or guarantee program approval.
